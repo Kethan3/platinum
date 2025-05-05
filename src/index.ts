@@ -10,5 +10,5 @@ allRoutes.get("", (context) => {
 });
 
 serve(allRoutes, ({ port }) => {
-  console.log(`running at http://localhost${port}`);
+  console.log(`running at http://localhost:${port}`);
 });
