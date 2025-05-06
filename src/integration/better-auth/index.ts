@@ -1,9 +1,18 @@
 import { betterAuth } from "better-auth";
-import { serverUrl } from "../../utils/environment";
+import { serverUrl, webClientUrl } from "../../utils/environment";
+import { prismaAdapter } from "better-auth/adapters/prisma";
+import { prismaClient } from "../prisma";
 
-export const betterAuthSecret = betterAuth({
+export const betterAuthClient = betterAuth({
   baseURL: serverUrl,
-  basePath: "/authentication",
+  basePath: "/authentications",
+  database: prismaAdapter(prismaClient, {
+    provider: "postgresql",
+  }),
+  trustedOrigins: [webClientUrl],
+  emailAndPassword :{
+    enabled : true
+  },
   user: {
     modelName: "User",
   },
