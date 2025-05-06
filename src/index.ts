@@ -4,6 +4,7 @@ import { authenticationsRoute } from "./routes/authentications";
 import { cors } from "hono/cors";
 import { webClientUrl } from "./utils/environment";
 import { postsRoutes } from "./routes/posts";
+import { feedRoute } from "./routes/feed";
 
 const allRoutes = new Hono();
 
@@ -20,6 +21,7 @@ allRoutes.use(
 
 allRoutes.route("/authentications", authenticationsRoute);
 allRoutes.route("/posts",postsRoutes);
+allRoutes.route("/feeds",feedRoute);
 serve(allRoutes, ({ port }) => {
   console.log(`\tRunning at http://localhost:${port}`);
 });
